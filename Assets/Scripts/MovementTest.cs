@@ -9,17 +9,17 @@ public class MovementTest : MonoBehaviour
     public float jumpSpeed;
     public float fallMultiplier;
     private float input;
-    private Rigidbody2D rgb;
+    private Rigidbody rgb;
     private Animator heroAnim;
     private SpriteRenderer heroSprite;
-    private BoxCollider2D boxCollider;
+    private BoxCollider boxCollider;
     // Start is called before the first frame update
     void Start()
     {
-        rgb = GetComponent<Rigidbody2D>();
+        rgb = GetComponent<Rigidbody>();
         heroAnim = GetComponent<Animator>();
         heroSprite = GetComponent<SpriteRenderer>();
-        boxCollider = GetComponent<BoxCollider2D>();
+        boxCollider = GetComponent<BoxCollider>();
     }
 
     // Update is called once per frame
@@ -48,11 +48,11 @@ public class MovementTest : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             
-            rgb.AddForce(new Vector3(0, jumpSpeed, 0), ForceMode2D.Impulse);
+            rgb.AddForce(new Vector3(0, jumpSpeed, 0), ForceMode.Impulse);
         }
         if (rgb.velocity.y<0)
         {
-            rgb.velocity += Vector2.up * (Physics2D.gravity.y) * (fallMultiplier - 1) * Time.deltaTime;
+            rgb.velocity += Vector3.up * (Physics2D.gravity.y) * (fallMultiplier - 1) * Time.deltaTime;
         }
         if (!IsGrounded())
         {

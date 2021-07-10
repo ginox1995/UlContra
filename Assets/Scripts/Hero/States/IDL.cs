@@ -6,17 +6,19 @@ namespace ProyectoFinal.Hero
 {
     public class IDL : HeroState
     {
-        private Rigidbody2D rgb;
+        private Rigidbody rgb;
         private Animator animHero;
         public IDL(HeroController hero, HeroStateMachine herosfm) : base(hero, herosfm)
         {
-            rgb = hero.GetComponent<Rigidbody2D>();
+            rgb = hero.GetComponent<Rigidbody>();
+            animHero = hero.GetComponent<Animator>();
         }
 
         public override void OnEnter()
         {
             base.OnEnter();
-            rgb.velocity = new Vector2(0, rgb.velocity.y);
+            rgb.velocity = new Vector3(0, rgb.velocity.y,0);
+            animHero.SetBool("Jumping", false);
             
         }
 
@@ -27,7 +29,7 @@ namespace ProyectoFinal.Hero
             {
                 hero.Run();
             }
-            if (Input.GetKeyDown(KeyCode.Space) && hero.IsGrounded())
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 hero.Jump();
             }
