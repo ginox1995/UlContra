@@ -2,17 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NormalRobotController : MonoBehaviour
+namespace ProyectoFinal.NormalRobot
 {
-    // Start is called before the first frame update
-    void Start()
+    
+    public class NormalRobotController : MonoBehaviour
     {
+        private NormalRobotStateMachine fsm;
+        public float robotSpeed;
+        public int robotHP;
+        //[SerializeField] public GameObject robot;
+        //Estados
+        private WalkingState walkingRobot;
+        private DyingState dyingRobot;
         
-    }
+        void Start()
+        {
+            
+            fsm = new NormalRobotStateMachine();
+            walkingRobot = new WalkingState(this, fsm);
+            dyingRobot = new DyingState(this, fsm);
+            //Seteo estado inicial
+            fsm.Start(walkingRobot);
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        void Update()
+        {
+            fsm.getCurrentState().OnHandleInput();
+            fsm.getCurrentState().OnLogicUpdate();
+        }
+        private void FixedUpdate()
+        {
+            fsm.getCurrentState().OnPhysicsUpdate();
+        }
+        public void dying()
+        {
+            fsm.ChangeState(dyingRobot);
+        }
     }
 }
+

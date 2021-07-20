@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NormalRobotState : MonoBehaviour
+namespace ProyectoFinal.NormalRobot
 {
-    // Start is called before the first frame update
-    void Start()
+    public class NormalRobotState 
     {
-        
-    }
+        protected NormalRobotController normalrobot;
+        protected NormalRobotStateMachine fsm;
+        public NormalRobotState( NormalRobotController normalrobot, NormalRobotStateMachine fsm)
+        {
+            this.normalrobot = normalrobot;
+            this.fsm = fsm;
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public virtual void OnEnter() { }
+        public virtual void OnExit() { }
+        public virtual void OnHandleInput() { }
+        public virtual void OnLogicUpdate() { }
+        public virtual void OnPhysicsUpdate() { }
     }
 }
+
