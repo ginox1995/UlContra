@@ -1,7 +1,7 @@
 using UnityEngine.Audio;
 using UnityEngine;
 
-namespace ULTanksZombies.Music
+namespace ProyectoFinal.Music
 {
     [System.Serializable]
     public class Sound

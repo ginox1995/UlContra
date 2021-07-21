@@ -506,9 +506,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1468360138}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a5f7abef254de441bbd28a7245a87e5, type: 3}
+  m_Script: {fileID: 11500000, guid: f5c6184876fac6c40bad9e715e556749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sounds:
+  - name: 
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 0.1
+    loop: 0
+    source: {fileID: 0}
+  BGM: {fileID: 0}
 --- !u!4 &1468360140
 Transform:
   m_ObjectHideFlags: 0
