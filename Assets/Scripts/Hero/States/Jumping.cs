@@ -14,6 +14,7 @@ namespace ProyectoFinal.Hero
         private float input;
         private BoxCollider boxcollider;
         private CapsuleCollider capsulecollider;
+
         public Jumping(HeroController hero, HeroStateMachine herosfm) : base(hero, herosfm)
         {
             jumpspeed = hero.jumpspeed;
@@ -23,11 +24,14 @@ namespace ProyectoFinal.Hero
             animHero = hero.GetComponent<Animator>();
             boxcollider = hero.GetComponent<BoxCollider>();
             capsulecollider = hero.GetComponent<CapsuleCollider>();
+            this.animationAttribute = "Jumping";    
+
         }
 
         public override void OnEnter()
         {
             base.OnEnter();
+
             isJumping = true;
             if (Input.GetKeyDown(KeyCode.Space) && hero.IsGrounded())
             {
@@ -38,8 +42,8 @@ namespace ProyectoFinal.Hero
             }
             boxcollider.enabled = false;
             capsulecollider.enabled = true;
-            animHero.SetBool("Jumping", true); 
-            
+            animHero.SetBool(animationAttribute, true);
+
         }
 
         public override void OnExit()
@@ -47,8 +51,8 @@ namespace ProyectoFinal.Hero
             base.OnExit();
             boxcollider.enabled = true;
             capsulecollider.enabled = false;
-            animHero.SetBool("Jumping", false);
-            
+            animHero.SetBool(animationAttribute, false);
+
         }
 
         public override void onHandleInput()
