@@ -5,7 +5,7 @@ using ProyectoFinal.FirePoint;
 
 namespace ProyectoFinal.Hero
 {
-    public class Running : HeroState
+    public class RunningShooting : HeroState
     {
         private float speed;
         private float inputH;
@@ -13,14 +13,15 @@ namespace ProyectoFinal.Hero
         private Rigidbody2D rgb;
         private SpriteRenderer sprite;
         private Animator animHero;
-        //public string animationAttribute = "Running";
-        public Running(HeroController hero, HeroStateMachine herosfm) : base(hero, herosfm)
+        //public string animationAttribute = "Shooting";
+
+        public RunningShooting(HeroController hero, HeroStateMachine herosfm) : base(hero, herosfm)
         {
             rgb = hero.GetComponent<Rigidbody2D>();
             speed= hero.runningspeed;
             sprite = hero.GetComponent<SpriteRenderer>();
             animHero = hero.GetComponent<Animator>();
-            this.animationAttribute = "Running";
+            this.animationAttribute = "Shooting";
         }
 
         public override void OnEnter()
@@ -39,17 +40,21 @@ namespace ProyectoFinal.Hero
         {
             inputH = Input.GetAxisRaw("Horizontal");
             inputV = Input.GetAxisRaw("Vertical");
-            if (inputH==0)            
+            if (inputH==0)
+            {
                 hero.IDL();
-            
-            /*if (inputV > 0)
-                hero.RunLookingUp();
-            
+            }
             if (inputV > 0)
-                hero.RunLookingDown();*/
-
-            if (Input.GetKeyDown(KeyCode.LeftControl))
-                hero.RunShooting();
+            {
+                //animHero.SetBool("Running", true);
+            }
+            if (inputV > 0)
+            {
+                //animHero.SetBool("Running", true);
+            }
+            if (Input.GetKeyUp(KeyCode.LeftControl))
+                hero.Run();
+            
         }
 
         public override void onLogicUpdate()
@@ -57,7 +62,7 @@ namespace ProyectoFinal.Hero
             if (inputH < 0)
             {
                 sprite.flipX = true;
-                GameObject.Find("FirePoint").GetComponent<FireController>().FixTransforme(animationAttribute);    
+                GameObject.Find("FirePoint").GetComponent<FireController>().FixTransforme(animationAttribute);
             }
             if (inputH > 0)
             {
@@ -65,8 +70,13 @@ namespace ProyectoFinal.Hero
                 GameObject.Find("FirePoint").GetComponent<FireController>().FixTransforme(animationAttribute);
             }
             
-           
         }
+
+        public void changeAnimation() 
+        {
+
+        }
+
 
         public override void onPhysicsUpdate()
         {
@@ -74,4 +84,3 @@ namespace ProyectoFinal.Hero
         }
     }
 }
-

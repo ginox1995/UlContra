@@ -10,24 +10,27 @@ namespace ProyectoFinal.Hero
         private SpriteRenderer sprite;
         private Animator animHero;
         private float input;
+        //public string animationAttribute = "Jumping";
+
         public Jumping(HeroController hero, HeroStateMachine herosfm) : base(hero, herosfm)
         {
             jumpspeed = hero.jumpspeed;
             rgb = hero.GetComponent<Rigidbody2D>();
             sprite = hero.GetComponent<SpriteRenderer>();
             animHero = hero.GetComponent<Animator>();
+            this.animationAttribute = "Jumping";    
         }
 
         public override void OnEnter()
         {
             base.OnEnter();
-            animHero.SetBool("Jumping", true);
+            animHero.SetBool(animationAttribute, true);
         }
 
         public override void OnExit()
         {
             base.OnExit();
-            animHero.SetBool("Jumping", false);
+            animHero.SetBool(animationAttribute, false);
         }
 
         public override void onHandleInput()

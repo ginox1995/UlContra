@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ProyectoFinal.FirePoint;
 
 namespace ProyectoFinal.Hero
 {
-    public class Running : HeroState
+    public class RunningLookingUp : HeroState
     {
         private float speed;
         private float inputH;
@@ -13,20 +12,19 @@ namespace ProyectoFinal.Hero
         private Rigidbody2D rgb;
         private SpriteRenderer sprite;
         private Animator animHero;
-        //public string animationAttribute = "Running";
-        public Running(HeroController hero, HeroStateMachine herosfm) : base(hero, herosfm)
+        //public string animationAttribute = "RunningUp";
+        public RunningLookingUp(HeroController hero, HeroStateMachine herosfm) : base(hero, herosfm)
         {
             rgb = hero.GetComponent<Rigidbody2D>();
             speed= hero.runningspeed;
             sprite = hero.GetComponent<SpriteRenderer>();
             animHero = hero.GetComponent<Animator>();
-            this.animationAttribute = "Running";
+            this.animationAttribute = "RunningUp";
         }
 
         public override void OnEnter()
         {
             animHero.SetBool(animationAttribute, true);
-            //GameObject.Find("FirePoint").GetComponent<FireController>().FixTransforme(animationAttribute);
         }
 
         public override void OnExit()
@@ -37,19 +35,27 @@ namespace ProyectoFinal.Hero
 
         public override void onHandleInput()
         {
-            inputH = Input.GetAxisRaw("Horizontal");
-            inputV = Input.GetAxisRaw("Vertical");
-            if (inputH==0)            
+            if (Input.GetAxisRaw("Horizontal") == 0)
+            {
                 hero.IDL();
-            
-            /*if (inputV > 0)
-                hero.RunLookingUp();
-            
-            if (inputV > 0)
-                hero.RunLookingDown();*/
+            }
+            else
+            {
 
-            if (Input.GetKeyDown(KeyCode.LeftControl))
-                hero.RunShooting();
+                if (Input.GetAxis("Vertical") < 0)
+                {
+                    hero.RunLookingDown();
+                }
+                else
+                {
+                    if (Input.GetAxis("Vertical") == 0)
+                        hero.Run();
+
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space) && hero.IsGrounded())
+                hero.Jump();
         }
 
         public override void onLogicUpdate()
@@ -57,16 +63,19 @@ namespace ProyectoFinal.Hero
             if (inputH < 0)
             {
                 sprite.flipX = true;
-                GameObject.Find("FirePoint").GetComponent<FireController>().FixTransforme(animationAttribute);    
             }
             if (inputH > 0)
             {
                 sprite.flipX = false;
-                GameObject.Find("FirePoint").GetComponent<FireController>().FixTransforme(animationAttribute);
             }
-            
            
         }
+
+        public void changeAnimation() 
+        {
+
+        }
+
 
         public override void onPhysicsUpdate()
         {
@@ -74,4 +83,3 @@ namespace ProyectoFinal.Hero
         }
     }
 }
-
