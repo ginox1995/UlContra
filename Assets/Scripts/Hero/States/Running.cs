@@ -8,15 +8,16 @@ namespace ProyectoFinal.Hero
     public class Running : HeroState
     {
         private float speed;
+        private Rigidbody rgb;
         private float inputH;
         private float inputV;
-        private Rigidbody2D rgb;
+
         private SpriteRenderer sprite;
         private Animator animHero;
         //public string animationAttribute = "Running";
         public Running(HeroController hero, HeroStateMachine herosfm) : base(hero, herosfm)
         {
-            rgb = hero.GetComponent<Rigidbody2D>();
+            rgb = hero.GetComponent<Rigidbody>();
             speed= hero.runningspeed;
             sprite = hero.GetComponent<SpriteRenderer>();
             animHero = hero.GetComponent<Animator>();
@@ -41,6 +42,11 @@ namespace ProyectoFinal.Hero
             inputV = Input.GetAxisRaw("Vertical");
             if (inputH==0)            
                 hero.IDL();
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                hero.Jump();
+            }
             
             /*if (inputV > 0)
                 hero.RunLookingUp();
@@ -50,6 +56,7 @@ namespace ProyectoFinal.Hero
 
             if (Input.GetKeyDown(KeyCode.LeftControl))
                 hero.RunShooting();
+
         }
 
         public override void onLogicUpdate()
@@ -64,13 +71,14 @@ namespace ProyectoFinal.Hero
                 sprite.flipX = false;
                 GameObject.Find("FirePoint").GetComponent<FireController>().FixTransforme(animationAttribute);
             }
-            
+
            
         }
 
         public override void onPhysicsUpdate()
         {
-            rgb.velocity = new Vector2(speed * inputH, rgb.velocity.y);
+            rgb.velocity = new Vector3(speed*inputH, rgb.velocity.y,0);
+
         }
     }
 }

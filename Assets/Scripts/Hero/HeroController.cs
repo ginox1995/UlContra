@@ -13,13 +13,18 @@ namespace ProyectoFinal.Hero
         private HeroState jumpingState;
         private HeroState dyingState;
         private HeroState idlState;
+
+        private BoxCollider boxCollider;
+        private CapsuleCollider capsuleCollider;
+
         private HeroState runningShootingState;
         private HeroState runningLookingUpState;
         private HeroState runningLookingDownState;
         private HeroState lookingUpState;
         private HeroState lookingDownState;
-        private BoxCollider2D boxCollider;
+
         private FireController fireController;
+
         [SerializeField] private LayerMask platformLayer;
         public float runningspeed;
         public float jumpspeed;
@@ -33,18 +38,18 @@ namespace ProyectoFinal.Hero
             jumpingState = new Jumping(this, fsm);
             dyingState = new Dying(this, fsm);
             idlState = new IDL(this, fsm);
+
+            boxCollider = GetComponent<BoxCollider>();
+            capsuleCollider = GetComponent<CapsuleCollider>();
+            //Estado inicial
             runningShootingState = new RunningShooting(this, fsm);
             runningLookingUpState = new RunningLookingUp(this, fsm);
             runningLookingDownState = new RunningLookingDown(this, fsm);
             lookingUpState = new LookingUp(this, fsm);
             lookingDownState = new LookingDown(this, fsm);
 
-            boxCollider = GetComponent<BoxCollider2D>();
-
             fireController = GameObject.Find("FirePoint").GetComponent<FireController>();
 
-            
-            //Estado inicia
             fsm.Start(idlState);
 
         }
@@ -115,22 +120,52 @@ namespace ProyectoFinal.Hero
 
         public bool IsGrounded()
         {
-            float extension = 0.1f;
+            float extension;
+            bool hit;
+            
             Color color;
-            RaycastHit2D raycastHit = Physics2D.Raycast(boxCollider.bounds.center, Vector2.down, boxCollider.bounds.extents.y+extension,platformLayer);
-            if (raycastHit.collider!=null)
+            if (boxCollider.enabled)
             {
-                color = Color.green;
-                //Debug.Log("Esta en el suelo");
+
+                extension = 0.1f;
+                //RaycastHit2D raycastHit = Physics2D.Raycast(boxCollider.bounds.center, Vector2.down, boxCollider.bounds.extents.y + extension, platformLayer);
+                hit = Physics.Raycast(boxCollider.bounds.center, Vector3.down, boxCollider.bounds.extents.y + extension, platformLayer);
+                if (hit)
+                {
+                    color = Color.green;
+                    
+                }
+                else
+                {
+                    color = Color.red;
+                    
+
+                }
+                Debug.DrawRay(boxCollider.bounds.center, Vector3.down * (boxCollider.bounds.extents.y + extension), color);
+                return hit;
+
+                
             }
             else
             {
-                color = Color.red;
-                //Debug.Log("Esta en el aire");
-            }
-            Debug.DrawRay(boxCollider.bounds.center,Vector2.down*(boxCollider.bounds.extents.y+extension),color);
+                extension = 7f;
+                hit = Physics.Raycast(capsuleCollider.bounds.center, Vector3.down, capsuleCollider.bounds.extents.y + extension, platformLayer);
+                if (hit)
+                {
+                    color = Color.green;
 
-            return raycastHit.collider!= null;
+                }
+                else
+                {
+                    color = Color.red;
+
+                }
+                Debug.DrawRay(capsuleCollider.bounds.center, Vector2.down * (capsuleCollider.bounds.extents.y + extension), color);
+
+                return hit;
+            }
+            
+            
         }
         public HeroState GetCurrentheroState() { return fsm.GetCurrentState(); }
     }

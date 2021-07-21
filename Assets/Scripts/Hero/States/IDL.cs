@@ -7,20 +7,23 @@ namespace ProyectoFinal.Hero
 {
     public class IDL : HeroState
     {
-        private Rigidbody2D rgb;
+        private Rigidbody rgb;
         private Animator animHero;
         //public string animationAttribute = "IDL";
         public IDL(HeroController hero, HeroStateMachine herosfm) : base(hero, herosfm)
         {
-            rgb = hero.GetComponent<Rigidbody2D>();
+
+            rgb = hero.GetComponent<Rigidbody>();
+            animHero = hero.GetComponent<Animator>();
             this.animationAttribute = "IDL";
+
         }
 
         public override void OnEnter()
         {
             base.OnEnter();
-            rgb.velocity = new Vector2(0, rgb.velocity.y);
-            //GameObject.Find("FirePoint").GetComponent<FireController>().FixTransforme(animationAttribute);
+            rgb.velocity = new Vector3(0, rgb.velocity.y,0);
+            animHero.SetBool("Jumping", false);
             
         }
 
@@ -47,7 +50,6 @@ namespace ProyectoFinal.Hero
                     }
                 }*/
             }
-
 
             if (Input.GetAxisRaw("Vertical") > 0)
                 hero.LookUp();
