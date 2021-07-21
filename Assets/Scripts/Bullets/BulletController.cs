@@ -43,12 +43,11 @@ namespace ProyectoFinal.Bullets
                 else if (collision.gameObject.name == "MechaTrooper")
                     collision.gameObject.GetComponent<MechaController>().Damaged(damage);
 
-                //GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>().Play("ZombieShooted");
+                if ((!collision.gameObject.CompareTag("Player") && currentDurability == maxDurability))
+                    Destroy(gameObject);
                 
-                //collision.gameObject.GetComponent<EnemiController>().damaged(damage);
             }
-            if ((!collision.gameObject.CompareTag("Player") && currentDurability == maxDurability))
-                Destroy(gameObject);
+            
 
         }
         

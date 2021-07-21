@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1293259007556994740}
   - component: {fileID: 1293259007556994731}
   - component: {fileID: 1293259007556994730}
+  - component: {fileID: 7738549192293127930}
   m_Layer: 0
   m_Name: ShootGunBottom
   m_TagString: Untagged
@@ -117,6 +118,19 @@ MonoBehaviour:
   maxDurability: 1
   reach: 40
   direction: {x: 1, y: -0.5, z: 0}
+--- !u!65 &7738549192293127930
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293259007556994729}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7, y: 8, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1293259007686009603
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,6 +143,7 @@ GameObject:
   - component: {fileID: 1293259007686009614}
   - component: {fileID: 1293259007686009613}
   - component: {fileID: 1293259007686009612}
+  - component: {fileID: 2681104919166289160}
   m_Layer: 0
   m_Name: ShootGunMiddel
   m_TagString: Untagged
@@ -234,6 +249,19 @@ MonoBehaviour:
   maxDurability: 1
   reach: 40
   direction: {x: 1, y: 0, z: 0}
+--- !u!65 &2681104919166289160
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293259007686009603}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7, y: 8, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1293259008072483441
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,6 +320,7 @@ GameObject:
   - component: {fileID: 1293259008215804111}
   - component: {fileID: 1293259008215804110}
   - component: {fileID: 1293259008215804109}
+  - component: {fileID: 3836357143575183079}
   m_Layer: 0
   m_Name: ShootGunTop
   m_TagString: Untagged
@@ -397,3 +426,16 @@ MonoBehaviour:
   maxDurability: 1
   reach: 40
   direction: {x: 1, y: 0.5, z: 0}
+--- !u!65 &3836357143575183079
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293259008215804108}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7, y: 8, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
