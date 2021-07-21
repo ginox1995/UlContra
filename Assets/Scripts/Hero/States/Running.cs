@@ -8,12 +8,12 @@ namespace ProyectoFinal.Hero
     {
         private float speed;
         private float input;
-        private Rigidbody2D rgb;
+        private Rigidbody rgb;
         private SpriteRenderer sprite;
         private Animator animHero;
         public Running(HeroController hero, HeroStateMachine herosfm) : base(hero, herosfm)
         {
-            rgb = hero.GetComponent<Rigidbody2D>();
+            rgb = hero.GetComponent<Rigidbody>();
             speed= hero.runningspeed;
             sprite = hero.GetComponent<SpriteRenderer>();
             animHero = hero.GetComponent<Animator>();
@@ -37,6 +37,10 @@ namespace ProyectoFinal.Hero
             {
                 hero.IDL();
             }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                hero.Jump();
+            }
         }
 
         public override void onLogicUpdate()
@@ -49,12 +53,14 @@ namespace ProyectoFinal.Hero
             {
                 sprite.flipX = false;
             }
+
+
            
         }
 
         public override void onPhysicsUpdate()
         {
-            rgb.velocity = new Vector2(speed*input, rgb.velocity.y);
+            rgb.velocity = new Vector3(speed*input, rgb.velocity.y,0);
         }
     }
 }
