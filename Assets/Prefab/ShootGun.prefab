@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 150
+  damage: 20
   maxDurability: 1
   reach: 40
   direction: {x: 1, y: -0.5, z: 0}
@@ -229,6 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 150
+  damage: 20
   maxDurability: 1
   reach: 40
   direction: {x: 1, y: 0, z: 0}
@@ -391,6 +393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 150
+  damage: 20
   maxDurability: 1
   reach: 40
   direction: {x: 1, y: 0.5, z: 0}

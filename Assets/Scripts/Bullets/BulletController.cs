@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ProyectoFinal.Hero;
+using ProyectoFinal.Mecha;
+using ProyectoFinal.NormalRobot;
 
 namespace ProyectoFinal.Bullets
 {
@@ -9,6 +11,7 @@ namespace ProyectoFinal.Bullets
     public class BulletController : MonoBehaviour
     {
         public float force;
+        public float damage;
         private float currentDurability;
         private Vector3 initialPoint;
         public float maxDurability;
@@ -31,11 +34,18 @@ namespace ProyectoFinal.Bullets
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.CompareTag("Zombie"))
+            Debug.Log("colicion");
+            if (collision.gameObject.CompareTag("Enemy"))
             {
-                //GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>().Play("ZombieShooted");
                 currentDurability += 1;
-                //GameObject.FindGameObjectWithTag("Zombie").GetComponent<EnemiController>().damaged();
+                if (collision.gameObject.name == "RobotEnemy")
+                    collision.gameObject.GetComponent<NormalRobotController>().Damaged(damage);
+                else if (collision.gameObject.name == "MechaTrooper")
+                    collision.gameObject.GetComponent<MechaController>().Damaged(damage);
+
+                //GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>().Play("ZombieShooted");
+                
+                //collision.gameObject.GetComponent<EnemiController>().damaged(damage);
             }
             if ((!collision.gameObject.CompareTag("Player") && currentDurability == maxDurability))
                 Destroy(gameObject);

@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 200
+  damage: 30
   maxDurability: 3
   reach: 100
   direction: {x: 1, y: 0, z: 0}

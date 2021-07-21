@@ -9,7 +9,7 @@ namespace ProyectoFinal.NormalRobot
     {
         private NormalRobotStateMachine fsm;
         public float robotSpeed;
-        public int robotHP;
+        public float robotHP;
         //[SerializeField] public GameObject robot;
         //Estados
         private WalkingState walkingRobot;
@@ -34,6 +34,15 @@ namespace ProyectoFinal.NormalRobot
         {
             fsm.getCurrentState().OnPhysicsUpdate();
         }
+
+        public void Damaged(float damage)
+        {
+            if (this.robotHP <= damage)
+                this.robotHP = 0;
+            else
+                this.robotHP = this.robotHP - damage;
+        }
+
         public void dying()
         {
             fsm.ChangeState(dyingRobot);

@@ -55,6 +55,15 @@ namespace ProyectoFinal.Mecha
             var misil= Instantiate(missile, missileSpawnLocation.position, missileSpawnLocation.rotation);
             misil.AddForce( new Vector3(-1,0,0)*missileSpeed,ForceMode.Impulse);
         }
+
+        public void Damaged(float damage)
+        {
+            if (this.mechaHP <= damage)
+                this.mechaHP = 0;
+            else 
+                this.mechaHP = mechaHP - damage;
+        }
+
         public bool EnemyOnSight()
         {
             float extension = 150f;
