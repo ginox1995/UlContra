@@ -31,7 +31,7 @@ namespace ProyectoFinal.Mecha
         void Update()
         {
             fsm.getMechaState().OnLogicUpdate();
-            EnemyOnSight();
+            
             
         }
         private void FixedUpdate()
@@ -55,14 +55,25 @@ namespace ProyectoFinal.Mecha
             var misil= Instantiate(missile, missileSpawnLocation.position, missileSpawnLocation.rotation);
             misil.AddForce( new Vector3(-1,0,0)*missileSpeed,ForceMode.Impulse);
         }
+
+        public void Damaged(float damage)
+        {
+            if (this.mechaHP <= damage)
+                this.mechaHP = 0;
+            else 
+                this.mechaHP = mechaHP - damage;
+        }
+
         public bool EnemyOnSight()
         {
             float extension = 150f;
             bool hit;
             Color color;
-            hit=Physics.Raycast(boxcollider.bounds.center, Vector3.left * (boxcollider.bounds.extents.x+extension),heroLayer);
+            RaycastHit hits;
+            hit=Physics.Raycast(boxcollider.bounds.center, Vector3.left * (boxcollider.bounds.extents.x+extension),out hits,heroLayer);
             if (hit)
             {
+                Debug.Log("Hit:" + hits.transform.tag);
                 color = Color.green;
             }
             else

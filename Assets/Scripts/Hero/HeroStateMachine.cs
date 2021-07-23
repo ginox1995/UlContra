@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ProyectoFinal.FirePoint;
 
 namespace ProyectoFinal.Hero
 {
@@ -19,6 +20,7 @@ namespace ProyectoFinal.Hero
             this.currentState.OnExit();
             this.currentState = newState;
             this.currentState.OnEnter();
+            GameObject.Find("FirePoint").GetComponent<FireController>().FixTransforme(currentState.animationAttribute);
         }
 
         public HeroState GetCurrentState()

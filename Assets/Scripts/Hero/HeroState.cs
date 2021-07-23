@@ -9,6 +9,8 @@ namespace ProyectoFinal.Hero
     {
         protected HeroController hero;
         protected HeroStateMachine herosfm;
+        public string animationAttribute;
+        
        public HeroState(HeroController hero, HeroStateMachine herosfm)
         {
             this.hero = hero;
