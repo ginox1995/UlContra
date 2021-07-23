@@ -31,7 +31,7 @@ namespace ProyectoFinal.Mecha
         void Update()
         {
             fsm.getMechaState().OnLogicUpdate();
-            EnemyOnSight();
+            
             
         }
         private void FixedUpdate()
@@ -69,9 +69,11 @@ namespace ProyectoFinal.Mecha
             float extension = 150f;
             bool hit;
             Color color;
-            hit=Physics.Raycast(boxcollider.bounds.center, Vector3.left * (boxcollider.bounds.extents.x+extension),heroLayer);
+            RaycastHit hits;
+            hit=Physics.Raycast(boxcollider.bounds.center, Vector3.left * (boxcollider.bounds.extents.x+extension),out hits,heroLayer);
             if (hit)
             {
+                //Debug.Log("Hit:" + hits.transform.tag);
                 color = Color.green;
             }
             else

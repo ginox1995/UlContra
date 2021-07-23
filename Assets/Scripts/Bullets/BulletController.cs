@@ -43,7 +43,7 @@ namespace ProyectoFinal.Bullets
                 else if (collision.gameObject.name == "MechaTrooper")
                     collision.gameObject.GetComponent<MechaController>().Damaged(damage);
 
-                if ((!collision.gameObject.CompareTag("Player") && currentDurability == maxDurability))
+                if ((!collision.gameObject.CompareTag("Player") && currentDurability == maxDurability) || collision.gameObject.CompareTag("Ground"))
                     Destroy(gameObject);
                 
             }

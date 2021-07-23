@@ -24,7 +24,9 @@ namespace ProyectoFinal.Hero
         private HeroState lookingDownState;
 
         private FireController fireController;
-
+        
+        [Range(0f, 10f)]
+        public float heroHP;
         [SerializeField] private LayerMask platformLayer;
         public float runningspeed;
         public float jumpspeed;
@@ -60,7 +62,9 @@ namespace ProyectoFinal.Hero
         // Update is called once per frame
         void Update()
         {
-            
+            if (heroHP <= 0 || transform.position.y < 0.0f)
+                Die();
+
             fsm.GetCurrentState().onHandleInput();
             fsm.GetCurrentState().onLogicUpdate();
             IsGrounded();
@@ -73,50 +77,48 @@ namespace ProyectoFinal.Hero
         public void Run()
         {
             fsm.ChangeState(runningState);
-            animationAttribute = ((Running)runningState).animationAttribute;
+            //animationAttribute = ((Running)runningState).animationAttribute;
         }
         public void Jump() {
             fsm.ChangeState(jumpingState);
-            animationAttribute = ((Jumping)jumpingState).animationAttribute;
+            //animationAttribute = ((Jumping)jumpingState).animationAttribute;
         }
         public void IDL()
         {
             fsm.ChangeState(idlState);
-            animationAttribute = ((IDL)idlState).animationAttribute;
+            //animationAttribute = ((IDL)idlState).animationAttribute;
         }
         public void RunShooting()
         {
             fsm.ChangeState(runningShootingState);
-            animationAttribute = ((RunningShooting)runningShootingState).animationAttribute;
+            //animationAttribute = ((RunningShooting)runningShootingState).animationAttribute;
         }
         public void RunLookingUp()
         {
             fsm.ChangeState(runningLookingUpState);
-            animationAttribute = ((RunningLookingUp)runningLookingUpState).animationAttribute;
+            //animationAttribute = ((RunningLookingUp)runningLookingUpState).animationAttribute;
         }
         public void RunLookingDown()
         {
             fsm.ChangeState(runningLookingDownState);
-            animationAttribute = ((RunningLookingDown)runningLookingDownState).animationAttribute;
+            //animationAttribute = ((RunningLookingDown)runningLookingDownState).animationAttribute;
         }
         public void LookUp()
         {
             fsm.ChangeState(lookingUpState);
-            animationAttribute = ((LookingUp)lookingUpState).animationAttribute;
+            //animationAttribute = ((LookingUp)lookingUpState).animationAttribute;
         }
         public void LookDown()
         {
             fsm.ChangeState(lookingDownState);
-            animationAttribute = ((LookingDown)lookingDownState).animationAttribute;
+            //animationAttribute = ((LookingDown)lookingDownState).animationAttribute;
         }
-
-        public string GetStateAnimatinoAttribute()
+        public void Die()
         {
-            //string animationAttribute = fsm.GetCurrentState();
-
-            //return animationAttribute;
-            return "";
+            fsm.ChangeState(dyingState);
+            //animationAttribute = ((LookingDown)lookingDownState).animationAttribute;
         }
+
 
         public bool IsGrounded()
         {
@@ -167,6 +169,16 @@ namespace ProyectoFinal.Hero
             
             
         }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (!collision.gameObject.CompareTag("Ground"))
+            {
+                heroHP = heroHP - 2f;
+                GameObject.Find("CurrentHeal").GetComponent<HealController>().HealModification(heroHP, 2f);
+            }
+        }
+
         public HeroState GetCurrentheroState() { return fsm.GetCurrentState(); }
     }
 }
