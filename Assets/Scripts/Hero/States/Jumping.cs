@@ -26,7 +26,7 @@ namespace ProyectoFinal.Hero
             boxcollider = hero.GetComponent<BoxCollider>();
             capsulecollider = hero.GetComponent<CapsuleCollider>();
 
-            this.animationAttribute = "Jumping";    
+            this.animationAttribute = "Jumping";
 
         }
 
@@ -38,7 +38,7 @@ namespace ProyectoFinal.Hero
             {
 
                 rgb.AddForce(new Vector3(runningspeed * input, jumpspeed, 0), ForceMode.Impulse);
-                Debug.Log("SE EJECUTA");
+                //Debug.Log("SE EJECUTA");
                 //rgb.velocity = new Vector3(rgb.velocity.x, jumpspeed,0);
             }
             boxcollider.enabled = false;
@@ -71,7 +71,7 @@ namespace ProyectoFinal.Hero
         }
         public override void onLogicUpdate()
         {
-            Debug.Log(hero.IsGrounded());
+            //Debug.Log(hero.IsGrounded());
             if (rgb.velocity.y<0)
             {
                 isJumping = false;

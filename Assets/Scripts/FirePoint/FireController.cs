@@ -31,7 +31,7 @@ namespace ProyectoFinal.FirePoint
         {
             if (countdown < Time.time)
             {
-                Debug.Log("F");
+                //Debug.Log("F");
                 countdown = Time.time + fireRate;
                 Instantiate(selectedWeapon, this.transform.position, this.transform.rotation);
             }

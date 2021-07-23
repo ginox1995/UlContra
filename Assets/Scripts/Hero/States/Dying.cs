@@ -8,6 +8,7 @@ namespace ProyectoFinal.Hero
     {
         public Dying(HeroController hero, HeroStateMachine herosfm) : base(hero, herosfm)
         {
+            this.animationAttribute = "Die";    
         }
     }
 }

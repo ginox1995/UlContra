@@ -73,7 +73,7 @@ namespace ProyectoFinal.Mecha
             hit=Physics.Raycast(boxcollider.bounds.center, Vector3.left * (boxcollider.bounds.extents.x+extension),out hits,heroLayer);
             if (hit)
             {
-                Debug.Log("Hit:" + hits.transform.tag);
+                //Debug.Log("Hit:" + hits.transform.tag);
                 color = Color.green;
             }
             else

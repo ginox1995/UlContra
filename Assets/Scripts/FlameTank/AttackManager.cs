@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ProyectoFinal.Hero;
 
 public class AttackManager : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class AttackManager : MonoBehaviour
     private float cooldownTime;
     private float attackDuration;
     private bool fireOn = false;
+    private float damage = 2;
+
     void Start()
     {
         cooldownTime = 5f;
@@ -46,8 +49,10 @@ public class AttackManager : MonoBehaviour
         {
             fire.Stop();
         }
-        Debug.Log(attackDuration);
-        Debug.Log(fireOn);
+        /*Debug.Log(attackDuration);
+        Debug.Log(fireOn);*/
 
     }
+
+    
 }
