@@ -38,9 +38,9 @@ namespace ProyectoFinal.Bullets
             if (collision.gameObject.CompareTag("Enemy"))
             {
                 currentDurability += 1;
-                if (collision.gameObject.name == "RobotEnemy")
+                if (collision.gameObject.name == "RobotEnemy(Clone)")
                     collision.gameObject.GetComponent<NormalRobotController>().Damaged(damage);
-                else if (collision.gameObject.name == "MechaTrooper")
+                else if (collision.gameObject.name == "MechaTrooper(Clone)")
                     collision.gameObject.GetComponent<MechaController>().Damaged(damage);
 
                 if ((!collision.gameObject.CompareTag("Player") && currentDurability == maxDurability) || collision.gameObject.CompareTag("Ground"))

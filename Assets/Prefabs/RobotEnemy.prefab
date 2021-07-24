@@ -1277,4 +1277,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   robotSpeed: 50
-  robotHP: 100
+  robotHP: 3

@@ -581,7 +581,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mechaSpeed: 20
-  mechaHP: 100
+  mechaHP: 3
   missileSpeed: 50
   heroLayer:
     serializedVersion: 2

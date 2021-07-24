@@ -40,7 +40,7 @@ namespace ProyectoFinal.Music
 
         void Start()
         {
-            Play("Precipice of Defeat");
+            Play("stageMusic");
         }
 
         public void Play(string name)

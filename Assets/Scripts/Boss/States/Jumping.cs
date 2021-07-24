@@ -16,11 +16,13 @@ namespace ProyectoFinal.Boss
         public override void OnEnter()
         {
             base.OnEnter();
+            anim.SetBool("Jumped",true);
         }
 
         public override void OnExit()
         {
             base.OnExit();
+            anim.SetBool("Jumped", true);
         }
 
         public override void OnLogicUpdate()
@@ -31,6 +33,7 @@ namespace ProyectoFinal.Boss
         public override void OnPhysicsUpdate()
         {
             base.OnPhysicsUpdate();
+            rgb.AddForce(new Vector3(rgb.velocity.x, controller.bossJumpSpeed, rgb.velocity.z));
         }
     }
 }
